@@ -17,6 +17,24 @@ executable hangman
   hs-source-dirs:      src
   main-is:             Main.hs
   default-language:    Haskell2010
+  ghc-options:         -Wall -fwarn-tabs
   build-depends:       base >= 4.7 && < 5
                      , random
-                     , split
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     Main
+  default-language:    Haskell2010
+  ghc-options:         -Wall -fwarn-tabs
+  build-depends:       base >= 4.7 && < 5
+                     , random
+
+test-suite test
+  hs-source-dirs:      test
+  main-is:             Specs.hs
+  type:                exitcode-stdio-1.0
+  default-language:    Haskell2010
+  ghc-options:         -Wall -fwarn-tabs -fno-warn-orphans -main-is Specs
+  build-depends:       base >= 4.7 && < 5
+                     , hspec
+                     , hangman

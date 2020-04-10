@@ -1,4 +1,4 @@
-module Main where
+module Main (Puzzle(..), fillInCharacter, handleGuess, main) where
 
 import Control.Monad (forever, when)
 import Data.Char (toLower)
@@ -11,7 +11,7 @@ import System.IO
 newtype WordList = WordList [String] deriving (Eq, Show)
 
 data Puzzle =
-  Puzzle String [Maybe Char] String Int
+  Puzzle String [Maybe Char] String Int deriving Eq
 
 instance Show Puzzle where
   show (Puzzle _ discovered guessed aleft) =
@@ -73,7 +73,7 @@ handleGuess puzzle guess = do
       return $ deductGuessCount (fillInCharacter puzzle guess)
 
 gameOver :: Puzzle -> IO ()
-gameOver (Puzzle wordToGuess _ guessed guessesLeft) =
+gameOver (Puzzle wordToGuess _ _ guessesLeft) =
   when (guessesLeft <= 0) $
     do  putStrLn "You lose!"
         putStrLn $ "The word was: " ++ wordToGuess
