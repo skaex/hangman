@@ -5,3 +5,8 @@ A simple hangman game in haskell.
 Install stack.
 
 `stack build && stack exec hangman`
+
+## Test
+Run some automated tests
+
+`stack test`
